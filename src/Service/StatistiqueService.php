@@ -3,6 +3,7 @@
 namespace App\Service;
 
 
+use App\Entity\Avion;
 use App\Entity\Destination;
 use App\Entity\Vol;
 use Doctrine\ORM\EntityManager;
@@ -26,5 +27,9 @@ class StatistiqueService
         $vols = $this->em->getRepository(Vol::class)->findBy(['destination' => $destination]);
 
         return ['destination' => $destination, 'vols' => $vols];
+    }
+
+    public function getAvionsEnService() {
+        return $this->em->getRepository(Avion::class)->findBy(['enService' => 1]);
     }
 }

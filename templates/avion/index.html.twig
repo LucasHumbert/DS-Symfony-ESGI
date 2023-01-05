@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Modele</th>
                 <th>Capacite</th>
+                <th>En service</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ avion.id }}</td>
                 <td>{{ avion.modele }}</td>
                 <td>{{ avion.capacite }}</td>
+                <td>{{ avion.enService ? 'Oui' : 'Non' }}</td>
                 <td>
                     <a href="{{ path('app_avion_show', {'id': avion.id}) }}">show</a>
                     <a href="{{ path('app_avion_edit', {'id': avion.id}) }}">edit</a>

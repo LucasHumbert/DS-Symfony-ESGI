@@ -39,6 +39,15 @@ class AvionRepository extends ServiceEntityRepository
         }
     }
 
+    public function findByEnService($value) {
+        return $this->createQueryBuilder('q')
+            ->andWhere('q.enService = :value')
+            ->setParameter('value', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Avion[] Returns an array of Avion objects
 //     */

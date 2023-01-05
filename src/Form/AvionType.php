@@ -14,6 +14,7 @@ class AvionType extends AbstractType
         $builder
             ->add('modele')
             ->add('capacite')
+            ->add('enService')
         ;
     }
 

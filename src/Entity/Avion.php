@@ -24,6 +24,9 @@ class Avion
     #[ORM\OneToMany(mappedBy: 'avion', targetEntity: Vol::class)]
     private Collection $vols;
 
+    #[ORM\Column]
+    private ?bool $enService = null;
+
     public function __construct()
     {
         $this->vols = new ArrayCollection();
@@ -91,5 +94,17 @@ class Avion
     public function __toString(): string
     {
         return $this->id . " " . $this->modele;
+    }
+
+    public function isEnService(): ?bool
+    {
+        return $this->enService;
+    }
+
+    public function setEnService(bool $enService): self
+    {
+        $this->enService = $enService;
+
+        return $this;
     }
 }

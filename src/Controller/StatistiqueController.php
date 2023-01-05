@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Avion;
 use App\Entity\Destination;
 use App\Service\StatistiqueService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,11 +15,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class StatistiqueController extends AbstractController
 {
     #[Route('/', name: 'app_stat')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager, StatistiqueService $statistiqueService): Response
     {
         $destinations = $entityManager->getRepository(Destination::class)->findAll();
+        $avionsEnService = $statistiqueService->getAvionsEnService();
+        $avionsPlusEnService = $entityManager->getRepository(Avion::class)->findByEnService(0);
+
         return $this->render('statistique/index.html.twig', [
             'destinations' => $destinations,
+            'avionsEnService' => $avionsEnService,
+            'avionsPlusEnService' => $avionsPlusEnService
         ]);
     }
 
