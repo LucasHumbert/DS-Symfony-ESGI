@@ -12,6 +12,7 @@ class VolType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('nom')
             ->add('date')
             ->add('avion')
             ->add('destination')

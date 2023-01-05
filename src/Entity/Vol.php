@@ -14,7 +14,7 @@ class Vol
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'vols')]
+    #[ORM\ManyToOne(fetch: "EAGER", inversedBy: 'vols')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Avion $avion = null;
 
@@ -24,6 +24,9 @@ class Vol
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $Nom = null;
 
     public function getId(): ?int
     {
@@ -62,6 +65,18 @@ class Vol
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->Nom;
+    }
+
+    public function setNom(string $Nom): self
+    {
+        $this->Nom = $Nom;
 
         return $this;
     }

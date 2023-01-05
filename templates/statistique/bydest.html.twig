@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StatistiqueController!{% endblock %}
+
+{% block body %}
+
+    <h1>Vols pour {{ destination.nom }}</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Vols</th>
+                <th>Avions</th>
+            </tr>
+        </thead>
+        {% for vol in vols %}
+            <tr>
+                <td>{{ vol.nom }}</td>
+                <td> {{ vol.avion.modele }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
