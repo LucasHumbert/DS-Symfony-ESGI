@@ -11,6 +11,7 @@
 <div class="example-wrapper">
     <h1>Statistiques</h1>
     <form action="{{ path("app_stat_bydest") }}" method="post">
+        <p>Chercher des vols pour une destination</p>
         <select name="destination">
             {% for destination in destinations %}
                 <option value="{{ destination.id }}">{{ destination.nom }}</option>

@@ -2,9 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Avion;
 use App\Entity\Destination;
-use App\Entity\Vol;
+use App\Service\StatistiqueService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,13 +23,13 @@ class StatistiqueController extends AbstractController
     }
 
     #[Route('/bydest', name: 'app_stat_bydest', methods: ['POST'])]
-    public function searchByDestination(Request $request, EntityManagerInterface $entityManager) {
+    public function searchByDestination(Request $request, StatistiqueService $statistiqueService) {
         $idDest = $request->request->get('destination');
-        $destination = $entityManager->getRepository(Destination::class)->find($idDest);
-        $vols = $entityManager->getRepository(Vol::class)->findBy(['destination' => $destination]);
+        $result = $statistiqueService->getVolsByDestination($idDest);
+
         return $this->render('statistique/bydest.html.twig', [
-            'destination' => $destination,
-            'vols' => $vols
+            'destination' => $result['destination'],
+            'vols' => $result['vols']
         ]);
     }
 }
